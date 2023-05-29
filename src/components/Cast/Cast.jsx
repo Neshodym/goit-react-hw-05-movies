@@ -9,7 +9,7 @@ const Cast = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const onActorsOfMovie = async () => {
+    const fetchActorsOfMovie = async () => {
       setLoading(true);
       try {
         const actors = await api.fetchActors(movieId);
@@ -20,7 +20,7 @@ const Cast = () => {
         setLoading(false);
       }
     };
-    onActorsOfMovie();
+    fetchActorsOfMovie();
   }, [movieId]);
 
   return (
@@ -29,11 +29,13 @@ const Cast = () => {
       <ul>
         {actors.map(actor => (
           <li key={actor.id}>
-            <img
-              width="200px"
-              src={'https://image.tmdb.org/t/p/w500' + actor.profile_path}
-              alt={actor.original_name}
-            />
+            {actor.profile_path && (
+              <img
+                width="200px"
+                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                alt={actor.original_name}
+              />
+            )}
             <p>{actor.name}</p>
             <p>Character: {actor.character}</p>
           </li>

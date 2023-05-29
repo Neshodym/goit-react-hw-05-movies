@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Routes, NavLink, Navigate } from 'react-router-dom';
 import s from './App.module.css';
 
