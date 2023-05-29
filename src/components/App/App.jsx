@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Route, Routes, NavLink, Navigate } from 'react-router-dom';
 import s from './App.module.css';
 
@@ -10,7 +10,7 @@ const MovieDetailsPage = lazy(() =>
 const Cast = lazy(() => import('../Cast/Cast'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
 
-const App = () => {
+export const App = () => {
   return (
     <div className={s.container}>
       <nav>
@@ -31,8 +31,8 @@ const App = () => {
       <Suspense fallback="loading">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
@@ -42,5 +42,3 @@ const App = () => {
     </div>
   );
 };
-
-export { App };
